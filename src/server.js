@@ -35,7 +35,7 @@ mongoose.connect(process.env.MONGODB_URI, () => {
 const MongoDB = new mongoose.model("todo", todoSchema)
 
 app.use(cors({
-    origin: "https://pravin-todo-app.netlify.app/",
+    // origin: "https://pravin-todo-app.netlify.app/",
     credentials: true
 }))
 // app.use(function (req, res, next) {
