@@ -35,11 +35,11 @@ mongoose.connect(process.env.MONGODB_URI,()=> {
 const MongoDB = new mongoose.model("todo", todoSchema)
 
 app.use(cors({
-    origin: "https://main--steady-zuccutto-785008.netlify.app/",
+    origin: "https://pravin-todo-app.netlify.app/",
     credentials: true
 }))
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://main--steady-zuccutto-785008.netlify.app/"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "https://pravin-todo-app.netlify.app/"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "*");
     next();
   });
