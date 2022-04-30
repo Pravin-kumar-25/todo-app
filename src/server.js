@@ -28,7 +28,7 @@ const app = express();
 
 // connectToDB()
 
-mongoose.connect(process.env.MONGO_DB_ATLAS_URI)
+mongoose.connect(process.env.MONGODB_URI)
 
 const MongoDB = new mongoose.model("todo", todoSchema)
 
@@ -46,6 +46,10 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.authenticate('session'))
 app.use(passport.session())
+
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('/client/build'))
+}
 
 
 const User = new mongoose.model("user", userSchemea)
