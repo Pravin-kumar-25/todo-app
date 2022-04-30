@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === 'production') {
 const User = new mongoose.model("user", userSchemea)
 
 passport.use(new LocalStrategy(User.authenticate()))
-passport.use(User.createStrategy())
+// passport.use(User.createStrategy())
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
