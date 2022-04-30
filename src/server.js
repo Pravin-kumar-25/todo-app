@@ -28,7 +28,9 @@ const app = express();
 
 // connectToDB()
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI,()=> {
+    console.log('Mongo db is connected successfully..')
+})
 
 const MongoDB = new mongoose.model("todo", todoSchema)
 
