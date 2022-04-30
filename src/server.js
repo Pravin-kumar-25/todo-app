@@ -28,7 +28,7 @@ const app = express();
 
 // connectToDB()
 
-mongoose.connect(process.env.MONGODB_URI,()=> {
+mongoose.connect(process.env.MONGODB_URI, () => {
     console.log('Mongo db is connected successfully..')
 })
 
@@ -38,11 +38,11 @@ app.use(cors({
     origin: "https://pravin-todo-app.netlify.app/",
     credentials: true
 }))
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://pravin-todo-app.netlify.app/"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "*");
-    next();
-  });
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "https://pravin-todo-app.netlify.app/"); // update to match the domain you will make the request from
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
@@ -54,7 +54,7 @@ app.use(passport.initialize())
 app.use(passport.authenticate('session'))
 app.use(passport.session())
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     app.use(express.static('/client/build'))
 }
 
@@ -82,7 +82,7 @@ passport.use(new GoogleStrategy({
                     //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
                     googleId: profile.id
                 });
-                user.save(function(err) {
+                user.save(function (err) {
                     if (err) console.log(err);
                     return done(err, user);
                 });
@@ -105,7 +105,7 @@ passport.deserializeUser(function (user, done) {
 });
 
 app.get('/auth/google',
-    passport.authenticate('google', { scope: ["email","profile"],prompt: ['select_account'] })
+    passport.authenticate('google', { scope: ["email", "profile"], prompt: ['select_account'] })
 )
 
 // app.get('/auth/google',(req,res)=> {
