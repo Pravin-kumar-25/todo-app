@@ -33,7 +33,7 @@ const TodoBlock = ({ setAddToDoDisplay, refresh, todoListItems, setToDoListItems
     }
     useEffect(() => {
         getResponse()
-    }, [isResponse])
+    })
 
     const addTodo = () => {
         setAddToDoDisplay(true)
