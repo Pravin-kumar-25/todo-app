@@ -69,7 +69,7 @@ passport.use(User.createStrategy())
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://pravin-todo-app.netlify.app/auth/google/todo",
+    callbackURL: "https://pravintodoapp.herokuapp.com/auth/google/todo",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
     function (accessToken, refreshToken, profile, done) {
