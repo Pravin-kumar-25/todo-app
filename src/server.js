@@ -102,8 +102,8 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+// passport.serializeUser(User.serializeUser())
+// passport.deserializeUser(User.deserializeUser())
 
 passport.serializeUser(function (user, done) {
     console.log('trying to serialise ', user)
