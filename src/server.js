@@ -49,20 +49,19 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('trust proxy', 1);
 app.use(session({
     cookie: {
-        secure: true,
-        maxAge: 60000,
-        httpOnly: false, 
+        secure: false,
+        maxAge: 60000
     },
     secret: "mytodoapp",
     store: MongoStore.create({
-        mongoUrl:process.env.MONGODB_URI
+        mongoUrl: process.env.MONGODB_URI
     }),
     resave: false,
     saveUninitialized: true
 }))
 app.use(passport.initialize())
-app.use(passport.authenticate('session'))
 app.use(passport.session())
+app.use(passport.authenticate('session'))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('/client/build'))
