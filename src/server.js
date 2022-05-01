@@ -151,6 +151,7 @@ app.post('/login', (req, res) => {
             res.sendStatus(400)
         } else {
             passport.authenticate("local")(req, res, () => {
+                console.log('inside login ',req.isAuthenticated())
                 res.sendStatus(200)
             })
         }
