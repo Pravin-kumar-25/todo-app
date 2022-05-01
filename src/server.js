@@ -95,16 +95,16 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-// passport.serializeUser(User.serializeUser())
-// passport.deserializeUser(User.deserializeUser())
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
 
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.serializeUser(function (user, done) {
+//     done(null, user);
+// });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+// passport.deserializeUser(function (user, done) {
+//     done(null, user);
+// });
 
 app.get('/auth/google',
     passport.authenticate('google', { scope: ["email", "profile"], prompt: ['select_account'] })
