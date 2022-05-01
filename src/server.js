@@ -9,10 +9,9 @@ import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import mongoose from 'mongoose';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import MongoStore from 'connect-mongo'
 
 const app = express();
-
-
 
 // const connectToDB =  async() => {
 //     // mongoose.connect("mongodb://localhost/todoDB")
@@ -47,10 +46,18 @@ app.use(cors({
 // });
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.set('trust proxy', 1);
 app.use(session({
+    cookie: {
+        secure: true,
+        maxAge: 60000
+    },
     secret: "mytodoapp",
+    store: MongoStore.create({
+        mongoUrl:process.env.MONGODB_URI
+    }),
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 }))
 app.use(passport.initialize())
 app.use(passport.authenticate('session'))
@@ -151,7 +158,7 @@ app.post('/login', (req, res) => {
             res.sendStatus(400)
         } else {
             passport.authenticate("local")(req, res, () => {
-                console.log('inside login ',req.isAuthenticated())
+                console.log('inside login ', req.isAuthenticated())
                 // req.session.logg
                 res.sendStatus(200)
             })
