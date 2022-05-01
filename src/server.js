@@ -50,7 +50,8 @@ app.set('trust proxy', 1);
 app.use(session({
     cookie: {
         secure: true,
-        maxAge: 60000
+        maxAge: 60000,
+        httpOnly: false, 
     },
     secret: "mytodoapp",
     store: MongoStore.create({
@@ -71,7 +72,7 @@ if (process.env.NODE_ENV === 'production') {
 const User = new mongoose.model("user", userSchemea)
 
 passport.use(new LocalStrategy(User.authenticate()))
-passport.use(User.createStrategy())
+// passport.use(User.createStrategy())
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
