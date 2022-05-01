@@ -158,6 +158,7 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/auth', (req, res) => {
+    console.log("inside auth get ", req.isAuthenticated())
     if (req.isAuthenticated()) {
         res.send(true)
     } else {
@@ -171,6 +172,7 @@ app.get('/logout', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+    console.log("inside / get ", req.isAuthenticated())
     if (req.isAuthenticated()) {
         // console.log(req.user)
         User.findById(req.user._id, (err, user) => {
