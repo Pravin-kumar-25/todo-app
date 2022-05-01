@@ -63,8 +63,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const User = new mongoose.model("user", userSchemea)
 
-passport.use(new LocalStrategy(User.authenticate()))
-// passport.use(User.createStrategy())
+// passport.use(new LocalStrategy(User.authenticate()))
+passport.use(User.createStrategy())
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -152,6 +152,7 @@ app.post('/login', (req, res) => {
         } else {
             passport.authenticate("local")(req, res, () => {
                 console.log('inside login ',req.isAuthenticated())
+                // req.session.logg
                 res.sendStatus(200)
             })
         }
