@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express';
+import cookieParser from 'cookie-parser'
 import todoSchema from './MongoDB.js'
 import userSchemea from './UsersDB.js';
 import cors from 'cors'
@@ -44,6 +45,7 @@ app.use(cors({
 //     res.header('Access-Control-Allow-Credentials', 'true')
 //     next();
 // });
+app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('trust proxy', 1);
